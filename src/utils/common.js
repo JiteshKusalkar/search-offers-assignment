@@ -30,3 +30,9 @@ export const getRating = (rating, total) => {
   const count = Math.round(rating / total);
   return count > 5 ? 5 : count;
 };
+
+export const getCurrency = (value, currency = 'EUR', locale = 'en-DE') =>
+  new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency
+  }).format(value);

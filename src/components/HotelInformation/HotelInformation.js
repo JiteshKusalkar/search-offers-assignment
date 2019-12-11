@@ -2,7 +2,11 @@ import styled from 'styled-components';
 import React from 'react';
 
 import ImgSlider from '../ImgSlider';
-import { getAccommodationDetails, getRating } from '../../utils/common';
+import {
+  getAccommodationDetails,
+  getRating,
+  getCurrency
+} from '../../utils/common';
 
 const ratingTotal = 5;
 
@@ -35,7 +39,9 @@ const HotelInformation = ({ data, className }) => (
         </HotelName>
         <StayInfo>
           <Nights>{data.price.nights} Nights</Nights>
-          <CostOfStay>{data.price.total}</CostOfStay>
+          <CostOfStay>
+            {getCurrency(data.price.total, data.price.currency)}
+          </CostOfStay>
         </StayInfo>
       </Headline>
       <AccommodationDetails>
