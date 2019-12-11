@@ -4,7 +4,7 @@ import {
   SEARCH_OFFERS_REQUEST,
   SEARCH_OFFERS_SUCCESS
 } from '../actions/searchOffers';
-import { getAttrFromData } from '../utils/common';
+import { pluckAttrFromData } from '../utils/common';
 
 const initialState = {
   isFetching: false,
@@ -21,7 +21,19 @@ export const searchOffers = (state = initialState, action) =>
 
       case SEARCH_OFFERS_SUCCESS:
         draftState.isFetching = false;
-        draftState.data = getAttrFromData(action.payload, 'provider', 'price');
+        draftState.data = pluckAttrFromData(
+          action.payload.offers,
+          'id',
+          'groupId',
+          'internalLink',
+          'details',
+          'photos',
+          'price',
+          'provider',
+          'location',
+          'rating',
+          'usps'
+        );
         return;
 
       case SEARCH_OFFERS_FAILURE:

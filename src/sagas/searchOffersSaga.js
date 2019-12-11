@@ -3,7 +3,6 @@ import { searchOffers } from '../api/searchOffers';
 import {
   SEARCH_OFFERS_REQUEST,
   searchOffersFailure,
-  searchOffersRequest,
   searchOffersSuccess
 } from '../actions/searchOffers';
 
@@ -17,6 +16,5 @@ function* searchOffersWorker(action) {
 }
 
 export default function* searchOffer() {
-  console.log('got dispatched');
   yield takeLatest(SEARCH_OFFERS_REQUEST, searchOffersWorker);
 }
